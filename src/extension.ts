@@ -1,25 +1,35 @@
+import { open } from "fs";
 import path = require("path");
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand(
-    "go-to-test.helloWorld",
-    async () => {
-      const activeEditor = vscode.window.activeTextEditor;
-
-      if (!activeEditor) {
-        vscode.window.setStatusBarMessage("go-to-test: No files open", 3000);
-        return;
-      }
-
-      const testDocument = await testOf(activeEditor.document);
-
-      vscode.window.showTextDocument(testDocument, vscode.ViewColumn.Beside);
-    }
+  const openTestFile = vscode.commands.registerCommand(
+    "go-to-test.openTestFile",
+    openFileCommand(vscode.ViewColumn.One)
   );
 
-  context.subscriptions.push(disposable);
+  const openTestFileBeside = vscode.commands.registerCommand(
+    "go-to-test.openTestFileBeside",
+    openFileCommand(vscode.ViewColumn.Beside)
+  );
+
+  context.subscriptions.push(openTestFile);
+  context.subscriptions.push(openTestFileBeside);
 }
+
+const openFileCommand = (placement: vscode.ViewColumn) =>
+  async () => {
+    const activeEditor = vscode.window.activeTextEditor;
+
+    if (!activeEditor) {
+      vscode.window.setStatusBarMessage("go-to-test: No files open", 3000);
+      return;
+    }
+
+    const testDocument = await testOf(activeEditor.document);
+
+    vscode.window.showTextDocument(testDocument, placement);
+  };
 
 async function testOf(
   currentFile: vscode.TextDocument
