@@ -4,6 +4,7 @@
   "description": "Go to tests of current file",
   "version": "0.2.0",
   "publisher": "yrachid",
+  "repository": "yrachid/vscode-goto-test",
   "engines": {
     "vscode": "^1.62.0"
   },
