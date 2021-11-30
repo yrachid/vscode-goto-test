@@ -1,6 +1,5 @@
-import { open } from "fs";
-import path = require("path");
 import * as vscode from "vscode";
+import path = require("path");
 
 export function activate(context: vscode.ExtensionContext) {
   const openTestFile = vscode.commands.registerCommand(
