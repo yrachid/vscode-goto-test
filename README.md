@@ -8,14 +8,24 @@ An extension to jump to the respective test suite of the current file.
 
 ### Or in a split view
 
+> This is the recommended choice for maximum productivity and hackerness.
+
+If you're coming from a Jetbrains IDE, the following shortcut is recommended:
+
+<kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd> t</kbd>
+
 <img src="./ibagens/open-test-file-beside.gif">
 
-Todos:
+### Supported Languages
 
-- Expand support to different spec patterns
-- Expand support to different languages
-- ~Validate inexistent test file~
-- ~Add gifs~
-- Add Icon
+- Typescript
+
+### Todos
+
+- [ ] Expand support to different spec patterns
+- [ ] Expand support to different languages
+- [x] ~Validate inexistent test file~
+- [x] ~Add gifs~
+- [ ] Add Icon
 - ???
 - Profit
