@@ -2,7 +2,7 @@
   "name": "go-to-test",
   "displayName": "go-to-test",
   "description": "Go to tests of current file",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "publisher": "yrachid",
   "repository": "https://github.com/yrachid/vscode-goto-test",
   "engines": {
