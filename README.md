@@ -10,7 +10,7 @@ An extension to jump to the respective test suite of the current file.
 
 > This is the recommended choice for maximum productivity and hackerness.
 
-If you're coming from a Jetbrains IDE, the following shortcut is recommended:
+If you're coming from a Jetbrains IDE, you may want to map this command to the following shortcut:
 
 <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd> t</kbd>
 
