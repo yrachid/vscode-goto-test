@@ -24,12 +24,16 @@ const openFileCommand = (placement: vscode.ViewColumn) => async () => {
     return;
   }
 
-  const testDocument = await testOf(activeEditor.document);
+  const testPath = await testOf(activeEditor.document);
 
-  if (!testDocument) {
+  if (!testPath) {
     vscode.window.setStatusBarMessage("go-to-test: No test file found", 3000);
     return;
   }
+
+  const testDocument = await vscode.workspace.openTextDocument(
+    vscode.Uri.file(testPath)
+  );
 
   vscode.window.showTextDocument(testDocument, placement);
 };

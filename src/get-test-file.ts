@@ -1,10 +1,18 @@
-import * as vscode from "vscode";
-import * as path from "path";
 import * as fs from "fs";
+import * as path from "path";
+
+type CodeDocument = {
+  uri: {
+    path: string;
+  };
+  languageId: string;
+};
+
+type TestFilePath = string;
 
 export async function testOf(
-  currentFile: vscode.TextDocument
-): Promise<vscode.TextDocument | undefined> {
+  currentFile: CodeDocument
+): Promise<TestFilePath | undefined> {
   const dirName: string = path.dirname(currentFile.uri.path);
   const fileName: string = path.basename(currentFile.uri.path);
 
@@ -12,11 +20,7 @@ export async function testOf(
 
   const testName = `${fileName.substring(0, lastDotIndex)}.spec.ts`;
 
-  const testUri: vscode.Uri = vscode.Uri.file(path.join(dirName, testName));
+  const testFilePath = path.join(dirName, testName);
 
-  if (!fs.existsSync(testUri.path)) {
-    return undefined;
-  }
-
-  return await vscode.workspace.openTextDocument(testUri);
+  return fs.existsSync(testFilePath) ? testFilePath : undefined;
 }
