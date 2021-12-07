@@ -1,6 +1,5 @@
 import * as vscode from "vscode";
-import path = require("path");
-import * as fs from "fs";
+import { testOf } from "./get-test-file";
 
 export function activate(context: vscode.ExtensionContext) {
   const openTestFile = vscode.commands.registerCommand(
@@ -34,24 +33,5 @@ const openFileCommand = (placement: vscode.ViewColumn) => async () => {
 
   vscode.window.showTextDocument(testDocument, placement);
 };
-
-async function testOf(
-  currentFile: vscode.TextDocument
-): Promise<vscode.TextDocument | undefined> {
-  const dirName: string = path.dirname(currentFile.uri.path);
-  const fileName: string = path.basename(currentFile.uri.path);
-
-  const lastDotIndex = fileName.lastIndexOf(".");
-
-  const testName = `${fileName.substring(0, lastDotIndex)}.spec.ts`;
-
-  const testUri: vscode.Uri = vscode.Uri.file(path.join(dirName, testName));
-
-  if (!fs.existsSync(testUri.path)) {
-    return undefined;
-  }
-
-  return await vscode.workspace.openTextDocument(testUri);
-}
 
 export function deactivate() {}
