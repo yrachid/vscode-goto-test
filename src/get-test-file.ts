@@ -10,6 +10,14 @@ type CodeDocument = {
 
 type TestFilePath = string;
 
+export function fileName(codeDocument: CodeDocument) {
+  const fileName: string = path.basename(codeDocument.uri.path);
+
+  const lastDotIndex = fileName.lastIndexOf(".");
+
+  return fileName.substring(0, lastDotIndex);
+}
+
 export async function testOf(
   currentFile: CodeDocument
 ): Promise<TestFilePath | undefined> {
